@@ -146,6 +146,15 @@ header {
     font-size: 24px;
     cursor: pointer;
     color: var(--navy);
+    transition: color 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--teal);
+}
+
+.mobile-menu-btn i {
+    font-size: 28px;
 }
 
 /* Hero Section - Home Page */
@@ -565,12 +574,18 @@ header {
     border-radius: 50%;
     margin-right: 15px;
     transition: all 0.3s;
+    text-decoration: none;
+}
+
+.author-social a i {
+    font-size: 1.2rem;
 }
 
 .author-social a:hover {
     background-color: var(--navy);
     color: white;
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .author-articles {
@@ -600,6 +615,12 @@ header {
 .article-icon {
     color: var(--gold);
     margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.article-icon i {
+    font-size: 1.1rem;
 }
 
 .divider {
@@ -821,11 +842,18 @@ header {
     border-radius: 50%;
     margin: 0 5px;
     transition: all 0.3s;
+    text-decoration: none;
+}
+
+.team-social a i {
+    font-size: 1.1rem;
 }
 
 .team-social a:hover {
     background-color: var(--navy);
     color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .stats-section {
@@ -962,6 +990,17 @@ header {
     font-size: 1.5rem;
     color: var(--gold);
     flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.contact-icon i {
+    font-size: 1.3rem;
+}
+
+.contact-info-item:hover .contact-icon {
+    background-color: var(--gold);
+    color: var(--navy);
+    transform: scale(1.1);
 }
 
 .contact-text h3 {
@@ -996,6 +1035,11 @@ header {
     border-radius: 50%;
     margin-right: 15px;
     transition: all 0.3s;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.social-icons a i {
     font-size: 1.2rem;
 }
 
@@ -1054,7 +1098,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
 }
 
 .faq-question:hover {
@@ -1062,7 +1106,16 @@ header {
 }
 
 .faq-question span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
     transition: transform 0.3s;
+}
+
+.faq-question span i {
+    font-size: 1.2rem;
 }
 
 .faq-question.active span {
@@ -1136,14 +1189,29 @@ footer {
 }
 
 .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
     color: var(--cream);
     margin-right: 15px;
     font-size: 1.5rem;
-    transition: color 0.3s;
+    transition: all 0.3s;
+    text-decoration: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer-social a i {
+    font-size: 1.2rem;
 }
 
 .footer-social a:hover {
-    color: var(--gold);
+    color: var(--navy);
+    background-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .footer-bottom {
