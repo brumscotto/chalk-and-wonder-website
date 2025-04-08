@@ -190,6 +190,7 @@ header {
     width: 200px;
     height: auto;
     margin-bottom: 20px;
+    border-radius: 20px;
 }
 
 .hero p {
@@ -257,7 +258,7 @@ header {
 }
 
 .book-card {
-    width: 280px;
+    width: 320px;
     margin: 0 20px 40px;
     background-color: white;
     border-radius: 10px;
