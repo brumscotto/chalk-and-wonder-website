@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors & Illustrators | Chalk & Wonder Press</title>
+    <style>
+        /* Color palette from logo */
+        :root {
+            --navy: #1A3A4A;
+            --teal: #40B0A6;
+            --gold: #F4C030;
+            --red: #E63946;
+            --cream: #FAF7F1;
+            --light-teal: #a7dbd8;
+            --dark-gold: #e6b014;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--navy);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--navy);
+        }
+
+        /* Page Header */
+        .page-header {
+            background-color: var(--navy);
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .page-header h1 {
+            color: var(--cream);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            color: var(--light-teal);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Authors Content */
+        .authors-content {
+            padding: 60px 0;
+        }
+
+        .authors-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .author-card {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .author-image {
+            width: 300px;
+            min-height: 300px;
+            overflow: hidden;
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            padding: 30px;
+            flex: 1;
+        }
+
+        .author-info h3 {
+            color: var(--navy);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .author-info h4 {
+            color: var(--teal);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .author-info p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .author-books {
+            margin-top: 20px;
+        }
+
+        .author-books h5 {
+            color: var(--navy);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .book-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .book-chip {
+            background-color: var(--light-teal);
+            color: var(--navy);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .book-chip:hover {
+            background-color: var(--teal);
+            color: white;
+        }
+
+        .author-social {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .author-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-teal);
+            color: var(--navy);
+            border-radius: 50%;
+            margin-right: 15px;
+            transition: all 0.3s;
+        }
+        
+        .author-articles {
+            margin-top: 20px;
+        }
+        
+        .article-links {
+            margin-top: 10px;
+        }
+        
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            margin-bottom: 8px;
+            border-bottom: 1px dotted var(--teal);
+            padding-bottom: 2px;
+        }
+        
+        .article-link:hover {
+            color: var(--teal);
+        }
+        
+        .article-icon {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+
+        .author-social a:hover {
+            background-color: var(--navy);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #ddd;
+            margin: 30px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            padding: 60px 0 20px;
+            color: var(--cream);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h4 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-social {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            color: var(--cream);
+            margin-right: 15px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .author-card {
+                flex-direction: column;
+            }
+
+            .author-image {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="/">
+                <img src="../assets/images/publisher_logo_logo_trans_background.png" alt="Chalk & Wonder Press Logo" class="logo">
+            </a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/books/">Books</a></li>
+                <li><a href="/authors/">Authors & Illustrators</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Authors & Illustrators</h1>
+            <p>Meet the talented creators behind our beautiful children's books.</p>
+        </div>
+    </section>
+
+    <!-- Authors Content -->
+    <section class="authors-content">
+        <div class="container">
+            <div class="authors-grid">
+                <!-- Author 1 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="../assets/images/m_domanska_headshot.jpg" alt="Mary Ann Domanska">
+                    </div>
+                    <div class="author-info">
+                        <h3>Mary Ann Domanska</h3>
+                        <h4>Author</h4>
+                        <p>Mary Ann Domanska is a children's book author with a passion for creating stories that inspire young readers. With a background in education, Mary Ann crafts tales that combine imagination with valuable life lessons. Her books often feature curious protagonists who embark on adventures of self-discovery.</p>
+                        <p>Mary Ann has been teaching at Springside Chestnut Hill Academy for 22 years and has a background in performing arts. When not writing, she enjoys camping with her dog, Penny.</p>
+                        
+                        <div class="author-books">
+                            <h5>Books by Mary Ann Domanska:</h5>
+                            <div class="book-chips">
+                                <a href="/books/book1/" class="book-chip">Emic Rizzle, Tinkerer</a>
+                                <a href="/books/book2/" class="book-chip">Nge and the Magical Drums</a>
+                                <a href="#" class="book-chip">Emic Rizzle Commits Random Acts of Art (Middle Grade, Coming Summer 2025)</a>
+                            </div>
+                        </div>
+                        
+                        <div class="author-articles">
+                            <h5>Articles by Mary Ann Domanska:</h5>
+                            <div class="article-links">
+                                <a href="#" class="article-link"><span class="article-icon">📝</span> "Writing a Middle-Grade Novel? Talk to an Expert. Talk to a 'Tween!" (SCBWI, September/October 2012)</a>
+                            </div>
+                        </div>
+                        
+                        <div class="author-social">
+                            <a href="#"><span>📘</span></a>
+                            <a href="#"><span>📷</span></a>
+                            <a href="#"><span>🐦</span></a>
+                            <a href="https://maryanndomanska.com"><span>🌐</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Author 2 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="../assets/images/publisher_logo_white_background.jpeg" alt="Yaga Brady">
+                    </div>
+                    <div class="author-info">
+                        <h3>Yaga Brady</h3>
+                        <h4>Author</h4>
+                        <p>Yaga Brady is a writer and longtime theater director based in Philadelphia, where she has been a vital force at The Stagecrafters for many years. Born in Eastern Europe, Brady draws deeply from her cultural heritage and artistic experience to craft stories that explore memory, identity, and the quiet resilience of survival.</p>
+                        <p>Her decades of directing have shaped her narrative voice—introspective, layered, and richly attuned to the emotional truths of human experience. <em>I Was A Willow</em> is her debut novel.</p>
+                        
+                        <div class="author-books">
+                            <h5>Books by Yaga Brady:</h5>
+                            <div class="book-chips">
+                                <a href="#" class="book-chip">I Was A Willow (Adult Historical Fiction, Coming Soon)</a>
+                            </div>
+                        </div>
+                        
+                        <div class="author-social">
+                            <a href="#"><span>📘</span></a>
+                            <a href="#"><span>📷</span></a>
+                            <a href="#"><span>🐦</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Illustrator 1 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="../assets/images/george_amadeus_headshot.jpg" alt="George Amadeus">
+                    </div>
+                    <div class="author-info">
+                        <h3>George Amadeus</h3>
+                        <h4>Illustrator</h4>
+                        <p>George Amadeus is a Maasai art teacher and artist based in Nairobi, known for his vibrant and imaginative artwork. He creates whimsical depictions of animals and expressive still lifes, blending paint with traditional African fabric to add texture and depth to his canvases.</p>
+                        <p>Originally from the small village of Lemong'o, George draws inspiration from his cultural heritage and the world around him, bringing a unique and dynamic perspective to his work.</p>
+                        
+                        <div class="author-books">
+                            <h5>Books illustrated by George Amadeus:</h5>
+                            <div class="book-chips">
+                                <a href="/books/book2/" class="book-chip">Nge and the Magical Drums</a>
+                            </div>
+                        </div>
+                        
+                        <div class="author-social">
+                            <a href="#"><span>📘</span></a>
+                            <a href="#"><span>📷</span></a>
+                            <a href="#"><span>🎨</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Illustrator 2 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="../assets/images/publisher_logo_white_background.jpeg" alt="Gabriela Guadalajara">
+                    </div>
+                    <div class="author-info">
+                        <h3>Gabriela Guadalajara</h3>
+                        <h4>Illustrator</h4>
+                        <p>Gabriela Guadalajara brings stories to life with her vibrant and engaging illustrations. Her artwork captures the essence of narrative with warmth and creativity that appeals to readers of all ages.</p>
+                        <p>Her distinctive style combines traditional techniques with modern sensibilities, creating visual stories that complement and enhance the written word.</p>
+                        
+                        <div class="author-books">
+                            <h5>Books illustrated by Gabriela Guadalajara:</h5>
+                            <div class="book-chips">
+                                <a href="#" class="book-chip">Fabemol Hears The Heart: A Story about Listening and Empathy (Upcoming)</a>
+                            </div>
+                        </div>
+                        
+                        <div class="author-social">
+                            <a href="#"><span>📘</span></a>
+                            <a href="#"><span>📷</span></a>
+                            <a href="#"><span>🎨</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Designer -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="../assets/images/larry_west_headshot.jpeg" alt="Larry West">
+                    </div>
+                    <div class="author-info">
+                        <h3>Larry West</h3>
+                        <h4>Book Designer</h4>
+                        <p>Larry West brings our books to life through thoughtful and creative design. With an eye for detail and a deep understanding of how visual elements enhance storytelling, Larry crafts book layouts that are both beautiful and functional.</p>
+                        <p>His design work ensures that our books are not just stories, but complete artistic experiences that engage readers from cover to cover.</p>
+                        
+                        <div class="author-books">
+                            <h5>Books designed by Larry West:</h5>
+                            <div class="book-chips">
+                                <a href="/books/book2/" class="book-chip">Nge and the Magical Drums</a>
+                                <a href="/books/book4/" class="book-chip">I Was A Willow</a>
+                            </div>
+                        </div>
+                        
+                        <div class="author-social">
+                            <a href="#"><span>📘</span></a>
+                            <a href="#"><span>🎨</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Chalk & Wonder Press</h4>
+                    <p>Publishing magical stories for curious young minds.</p>
+                    <div class="footer-social">
+                        <a href="#"><span>📘</span></a>
+                        <a href="#"><span>📷</span></a>
+                        <a href="#"><span>🐦</span></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/books/">Books</a></li>
+                        <li><a href="/authors/">Authors & Illustrators</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>info@chalkandwonderpress.com</li>
+                        <li>215-601-4022</li>
+                        <li>Philadelphia, PA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Chalk & Wonder Press. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Author highlighting effect on hover
+        const authorCards = document.querySelectorAll('.author-card');
+        
+        authorCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Book chip hover animation
+        const bookChips = document.querySelectorAll('.book-chip');
+        
+        bookChips.forEach(chip => {
+            chip.addEventListener('mouseenter', () => {
+                chip.style.transform = 'translateY(-3px)';
+            });
+            
+            chip.addEventListener('mouseleave', () => {
+                chip.style.transform = 'translateY(0)';
+            });
+        });

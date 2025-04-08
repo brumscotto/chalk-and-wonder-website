@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Clean URLs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #1A3A4A;
+            text-align: center;
+        }
+        .test-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .test-links a {
+            padding: 10px;
+            background-color: #f0f0f0;
+            text-decoration: none;
+            color: #1A3A4A;
+            border-radius: 5px;
+        }
+        .test-links a:hover {
+            background-color: #e0e0e0;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clean URL Structure Test</h1>
+    
+    <div class="instructions">
+        <h2>Instructions</h2>
+        <p>Click on each link below to test if the clean URL structure is working correctly. Each link should take you to the corresponding page without showing the .html extension in the URL.</p>
+    </div>
+    
+    <div class="test-links">
+        <a href="/">Home Page</a>
+        <a href="/books/">Books Page</a>
+        <a href="/authors/">Authors Page</a>
+        <a href="/about/">About Page</a>
+        <a href="/contact/">Contact Page</a>
+    </div>
+    
+    <p>If all links work correctly, the clean URL implementation is successful!</p>
+</body>
+</html>

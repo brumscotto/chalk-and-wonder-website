@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books | Chalk & Wonder Press</title>
+    <style>
+        /* Color palette from logo */
+        :root {
+            --navy: #1A3A4A;
+            --teal: #40B0A6;
+            --gold: #F4C030;
+            --red: #E63946;
+            --cream: #FAF7F1;
+            --light-teal: #a7dbd8;
+            --dark-gold: #e6b014;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--navy);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--navy);
+        }
+
+        /* Page Header */
+        .page-header {
+            background-color: var(--navy);
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .page-header h1 {
+            color: var(--cream);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            color: var(--light-teal);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Books Content */
+        .books-content {
+            padding: 60px 0;
+        }
+
+        .book-filters {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            padding: 8px 15px;
+            margin: 0 10px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--navy);
+            color: white;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .book-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .book-info {
+            padding: 20px;
+        }
+
+        .book-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            color: var(--navy);
+        }
+
+        .book-info p {
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .book-info .btn {
+            display: inline-block;
+            background-color: var(--teal);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .book-info .btn:hover {
+            background-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-meta {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: var(--teal);
+        }
+        
+        .book-reviews {
+            margin-bottom: 15px;
+        }
+        
+        .review-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            border-bottom: 1px dotted var(--teal);
+            padding-bottom: 2px;
+        }
+        
+        .review-link:hover {
+            color: var(--teal);
+        }
+        
+        .review-icon {
+            color: var(--gold);
+            margin-right: 6px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            padding: 60px 0 20px;
+            color: var(--cream);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h4 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-social {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            color: var(--cream);
+            margin-right: 15px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="/">
+                <img src="../assets/images/publisher_logo_logo_trans_background.png" alt="Chalk & Wonder Press Logo" class="logo">
+            </a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/books/">Books</a></li>
+                <li><a href="/authors/">Authors & Illustrators</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Books</h1>
+            <p>Discover our collection of beautifully crafted books for both children and adults, designed to inspire imagination and insight.</p>
+        </div>
+    </section>
+
+    <!-- Books Content -->
+    <section class="books-content">
+        <div class="container">
+            <div class="book-filters">
+                <button class="filter-btn active" data-category="all">All Books</button>
+                <button class="filter-btn" data-category="picture">Picture Books</button>
+                <button class="filter-btn" data-category="middle-grade">Middle Grade</button>
+                <button class="filter-btn" data-category="new">New Releases</button>
+                <button class="filter-btn" data-category="coming-soon">Coming Soon</button>
+            </div>
+
+            <div class="books-grid">
+                <!-- Book 1 -->
+                <div class="book-card" data-category="picture new">
+                    <img src="../assets/images/emic_tinkerer_cover.png" alt="Emic Rizzle, Tinkerer" class="book-cover">
+                    <div class="book-info">
+                        <h3>Emic Rizzle, Tinkerer</h3>
+                        <div class="book-meta">By Mary Ann Domanska • Ages 8-12</div>
+                        <p>Twelve-year-old Emic Rizzle doesn't just dream—she builds. When her family moves from Chicago to Flat Rock, North Carolina, she faces the challenge of starting over. Then she discovers a long-lost journal filled with sketches and secrets once belonging to Nikola Tesla, entrusted to her by her late grandfather. Now, strange men in dark suits are watching, and Emic must uncover the truth before it's too late. Armed with curiosity, creativity, and a pocketknife, Emic embarks on a thrilling adventure that could change everything—including where she truly belongs.</p>
+                        <div class="book-reviews">
+                            <a href="https://www.kirkusreviews.com/book-reviews/mary-ann-domanska/emic-rizzle-tinkerer/" target="_blank" class="review-link"><span class="review-icon">⭐</span> Read the Kirkus Review</a>
+                        </div>
+                        <a href="/books/book1/" class="btn">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Book 2 -->
+                <div class="book-card" data-category="picture">
+                    <img src="../assets/images/nge_magic_drum_cover.jpg" alt="Nge and the Magical Drums" class="book-cover">
+                    <div class="book-info">
+                        <h3>Nge and the Magical Drums</h3>
+                        <div class="book-meta">By Mary Ann Domanska • Ages 6-10</div>
+                        <p>Join Nge, a young orphan with a gift for drumming, as his village faces a devastating drought and he discovers his rhythm can summon life-saving rain. With help from Tembo the wise elephant, Asani the courageous lion, and playful monkeys Kali and Kofi, Nge learns that harmony and resilience can create extraordinary miracles. This enchanting story celebrates the magic of friendship and the boundless potential within us all.</p>
+                        <a href="/books/book2/" class="btn">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Book 3 (upcoming) -->
+                <div class="book-card" data-category="middle-grade coming-soon">
+                    <img src="../assets/images/emic_random_acts_cover.png" alt="Emic Rizzle Commits Random Acts of Art" class="book-cover">
+                    <div class="book-info">
+                        <h3>Emic Rizzle Commits Random Acts of Art</h3>
+                        <div class="book-meta">By Mary Ann Domanska • Ages 8-12 • Expected Summer 2025</div>
+                        <p>When Emic Rizzle discovers an old painting at an estate sale, she never expects it to change her life—or her entire town. With help from her friends Dublin and Dede, and her "super camera" invention, Emic uncovers a hidden signature revealing the painting as a lost Jackson Pollock masterpiece. As fame and chaos ensue, Emic and her friends must find a way to save their wildfire-ravaged community. A mystery-filled adventure about finding value in unexpected places.</p>
+                        <a href="#" class="btn">Coming Soon</a>
+                    </div>
+                </div>
+
+                <!-- Book 5 (upcoming) -->
+                <div class="book-card" data-category="picture coming-soon">
+                    <img src="../assets/images/publisher_logo_white_background.jpeg" alt="Fabemol Hears The Heart" class="book-cover">
+                    <div class="book-info">
+                        <h3>Fabemol Hears The Heart</h3>
+                        <div class="book-meta">Illustrated by Gabriela Guadalajara • Ages 4-8 • Coming Soon</div>
+                        <p>In a world of swirling colors and musical trees, Fabemol is a quiet soul who doesn't speak much—but he hears more than most. When Tutu tumbles, Lali's wings droop, and Gliglucito hides behind silence, Fabemol doesn't try to fix their feelings. Instead, he listens. Through textured collage illustrations and whimsical characters, this gentle story explores the quiet magic of presence, emotional connection, and the healing power of truly being heard.</p>
+                        <a href="#" class="btn">Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Chalk & Wonder Press</h4>
+                    <p>Publishing magical stories for curious young minds.</p>
+                    <div class="footer-social">
+                        <a href="#"><span>📘</span></a>
+                        <a href="#"><span>📷</span></a>
+                        <a href="#"><span>🐦</span></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/books/">Books</a></li>
+                        <li><a href="/authors/">Authors & Illustrators</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>info@chalkandwonderpress.com</li>
+                        <li>215-601-4022</li>
+                        <li>Philadelphia, PA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Chalk & Wonder Press. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Book Filters
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const bookCards = document.querySelectorAll('.book-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get selected category
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter books
+                    bookCards.forEach(card => {
+                        if (category === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const cardCategories = card.getAttribute('data-category').split(' ');
+                            if (cardCategories.includes(category)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

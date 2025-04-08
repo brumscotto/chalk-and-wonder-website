@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalk & Wonder Press | Children's Book Publisher</title>
+    <style>
+        /* Color palette from logo */
+        :root {
+            --navy: #1A3A4A;
+            --teal: #40B0A6;
+            --gold: #F4C030;
+            --red: #E63946;
+            --cream: #FAF7F1;
+            --light-teal: #a7dbd8;
+            --dark-gold: #e6b014;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--navy);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/400') center/cover no-repeat;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+                .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--cream);
+        }
+        
+        .hero-logo {
+            margin-bottom: 30px;
+        }
+
+        .banner-logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light-teal);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--teal);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Featured Books */
+        .featured-books {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            font-size: 2.5rem;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+
+        .books-carousel {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .book-card {
+            width: 280px;
+            margin: 0 20px 40px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .book-info {
+            padding: 20px;
+        }
+
+        .book-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            color: var(--navy);
+        }
+
+        .book-info p {
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .book-info .btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--navy);
+            color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+
+        .about-text h2 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--cream);
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 60px 0;
+            background-color: var(--teal);
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            border-radius: 30px 0 0 30px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background-color: var(--gold);
+            padding: 15px 25px;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            color: var(--navy);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--dark-gold);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            padding: 60px 0 20px;
+            color: var(--cream);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h4 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-social {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            color: var(--cream);
+            margin-right: 15px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Books Page Styles */
+        .books-content {
+            padding: 60px 0;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .book-filters {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            padding: 8px 15px;
+            margin: 0 10px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--navy);
+            color: white;
+        }
+
+        /* Author Page Styles */
+        .authors-content {
+            padding: 60px 0;
+        }
+
+        .author-card {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .author-image {
+            width: 300px;
+            overflow: hidden;
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            padding: 30px;
+            flex: 1;
+        }
+
+        .author-info h3 {
+            color: var(--navy);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .author-info h4 {
+            color: var(--teal);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .author-info p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .author-social {
+            display: flex;
+        }
+
+        .author-social a {
+            margin-right: 15px;
+            color: var(--navy);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .author-social a:hover {
+            color: var(--teal);
+        }
+
+        /* Contact Page Styles */
+        .contact-content {
+            padding: 60px 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+
+        .contact-form h2 {
+            color: var(--navy);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--navy);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .contact-info h2 {
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 15px;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .about-text, .about-image {
+                padding: 0;
+                margin-bottom: 40px;
+            }
+
+            .author-card {
+                flex-direction: column;
+            }
+
+            .author-image {
+                width: 100%;
+                height: 300px;
+            }
+
+            .newsletter-form input, .newsletter-form button {
+                width: 100%;
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="/">
+                <img src="assets/images/publisher_logo_logo_trans_background.png" alt="Chalk & Wonder Press Logo" class="logo">
+            </a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/books/">Books</a></li>
+                <li><a href="/authors/">Authors & Illustrators</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="assets/images/publisher_logo_white_background.jpeg" alt="Chalk & Wonder Press Logo" class="banner-logo">
+            </div>
+            <h1>Inspiring Readers of All Ages</h1>
+            <p>Chalk & Wonder Press publishes thoughtful, imaginative books for children and adults that spark curiosity and joy.</p>
+            <a href="/books/" class="btn">Explore Our Books</a>
+        </div>
+    </section>
+
+    <!-- Featured Books -->
+    <section class="featured-books">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Books</h2>
+            </div>
+            <div class="books-carousel">
+                <div class="book-card">
+                    <img src="assets/images/emic_tinkerer_cover.png" alt="Emic Rizzle, Tinkerer" class="book-cover">
+                    <div class="book-info">
+                        <h3>Emic Rizzle, Tinkerer</h3>
+                        <p>A magical tale about a young inventor who discovers the power of creativity.</p>
+                        <a href="book1.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="assets/images/nge_magic_drum_cover.jpg" alt="Nge and the Magical Drums" class="book-cover">
+                    <div class="book-info">
+                        <h3>Nge and the Magical Drums</h3>
+                        <p>A rhythmic adventure with drums that bring harmony to a village.</p>
+                        <a href="book2.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="assets/images/emic_random_acts_cover.png" alt="Emic Rizzle Commits Random Acts of Art" class="book-cover">
+                    <div class="book-info">
+                        <h3>I Was A Willow</h3>
+                        <p>A poetic journey through the seasons as seen through the eyes of a willow tree.</p>
+                        <a href="book4.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Chalk & Wonder Press was founded with a simple mission: to create beautiful, meaningful books that inspire children to dream, learn, and grow. We believe in the power of storytelling to shape young minds and hearts.</p>
+                    <p>Our carefully crafted books combine engaging narratives with stunning illustrations to create immersive reading experiences that children will treasure for years to come.</p>
+                    <a href="/about/" class="btn">Learn More About Us</a>
+                </div>
+                <div class="about-image">
+                    <img src="assets/images/publisher_logo_white_background.jpeg" alt="About Chalk & Wonder Press">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h3>Join Our Story Circle</h3>
+            <p>Subscribe to our newsletter for book releases, author events, and exclusive content for young readers.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Chalk & Wonder Press</h4>
+                    <p>Publishing magical stories for curious young minds.</p>
+                    <div class="footer-social">
+                        <a href="#"><span>📘</span></a>
+                        <a href="#"><span>📷</span></a>
+                        <a href="#"><span>🐦</span></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/books/">Books</a></li>
+                        <li><a href="/authors/">Authors & Illustrators</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>info@chalkandwonderpress.com</li>
+                        <li>215-601-4022</li>
+                        <li>Philadelphia, PA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Chalk & Wonder Press. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Book carousel (could be enhanced with a library like Swiper.js)
+        // For this simple version, we're not adding automatic sliding
+    </script>
+</body>
+</html>
