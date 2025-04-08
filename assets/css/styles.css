@@ -1214,6 +1214,8 @@ footer {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Styles for disabled social links removed as they are now commented out in the HTML */
+
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
