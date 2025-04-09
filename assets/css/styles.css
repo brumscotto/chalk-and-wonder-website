@@ -505,6 +505,11 @@ header {
     object-fit: cover;
 }
 
+/* Adjust Larry West's image to prevent face from being cut off in larger viewports */
+.author-image img[alt="Larry West"] {
+    object-position: left center;
+}
+
 .author-info {
     padding: 30px;
     flex: 1;
