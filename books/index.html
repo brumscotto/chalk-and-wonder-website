@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <script src="../assets/js/books-data.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -53,54 +54,8 @@
                 <button class="filter-btn" data-category="coming-soon">Coming Soon</button>
             </div>
 
-            <div class="books-grid">
-                <!-- Book 1 -->
-                <div class="book-card" data-category="picture new">
-                    <img src="../assets/images/emic_tinkerer_cover.png" alt="Emic Rizzle, Tinkerer" class="book-cover">
-                    <div class="book-info">
-                        <h3>Emic Rizzle, Tinkerer</h3>
-                        <div class="book-meta">By Mary Ann Domanska • Ages 8-12</div>
-                        <p>Twelve-year-old Emic Rizzle doesn't just dream—she builds. When her family moves from Chicago to Flat Rock, North Carolina, she faces the challenge of starting over. Then she discovers a long-lost journal filled with sketches and secrets once belonging to Nikola Tesla, entrusted to her by her late grandfather. Now, strange men in dark suits are watching, and Emic must uncover the truth before it's too late. Armed with curiosity, creativity, and a pocketknife, Emic embarks on a thrilling adventure that could change everything—including where she truly belongs.</p>
-                        <div class="book-reviews">
-                            <a href="https://www.kirkusreviews.com/book-reviews/mary-ann-domanska/emic-rizzle-tinkerer/" target="_blank" class="review-link"><span class="review-icon"><i class="bi bi-star-fill"></i></span> Read the Kirkus Review</a>
-                        </div>
-                        <!-- <a href="book1/" class="btn">Read More</a> -->
-                    </div>
-                </div>
-
-                <!-- Book 2 -->
-                <div class="book-card" data-category="picture">
-                    <img src="../assets/images/nge_magic_drum_cover.jpg" alt="Nge and the Magical Drums" class="book-cover">
-                    <div class="book-info">
-                        <h3>Nge and the Magical Drums</h3>
-                        <div class="book-meta">By Mary Ann Domanska • Ages 6-10</div>
-                        <p>Join Nge, a young orphan with a gift for drumming, as his village faces a devastating drought and he discovers his rhythm can summon life-saving rain. With help from Tembo the wise elephant, Asani the courageous lion, and playful monkeys Kali and Kofi, Nge learns that harmony and resilience can create extraordinary miracles. This enchanting story celebrates the magic of friendship and the boundless potential within us all.</p>
-                        <!-- <a href="book2/" class="btn">Read More</a> -->
-                    </div>
-                </div>
-
-                <!-- Book 5 (upcoming) -->
-                <div class="book-card" data-category="picture new">
-                    <img src="../assets/images/Fabemol-Portada_216x279-PRINT.png" alt="Fabemol Hears The Heart" class="book-cover">
-                    <div class="book-info">
-                        <h3>Fabemol Hears The Heart</h3>
-                        <div class="book-meta">Illustrated by Gabriela Guadalajara • Ages 4-8 • Coming Soon</div>
-                        <p>In a world of swirling colors and musical trees, Fabemol is a quiet soul who doesn't speak much—but he hears more than most. When Tutu tumbles, Lali's wings droop, and Gliglucito hides behind silence, Fabemol doesn't try to fix their feelings. Instead, he listens. Through textured collage illustrations and whimsical characters, this gentle story explores the quiet magic of presence, emotional connection, and the healing power of truly being heard.</p>                    
-                    </div>
-                </div>
-
-                <!-- Book 3 (upcoming) -->
-                <div class="book-card" data-category="middle-grade coming-soon">
-                    <img src="../assets/images/emic_random_acts_cover.png" alt="Emic Rizzle Commits Random Acts of Art" class="book-cover">
-                    <div class="book-info">
-                        <h3>Emic Rizzle Commits Random Acts of Art</h3>
-                        <div class="book-meta">By Mary Ann Domanska • Ages 8-12 • Expected Summer 2025</div>
-                        <p>When Emic Rizzle discovers an old painting at an estate sale, she never expects it to change her life—or her entire town. With help from her friends Dublin and Dede, and her "super camera" invention, Emic uncovers a hidden signature revealing the painting as a lost Jackson Pollock masterpiece. As fame and chaos ensue, Emic and her friends must find a way to save their wildfire-ravaged community. A mystery-filled adventure about finding value in unexpected places.</p>
-                        <span class="btn">Coming Soon</span>
-                    </div>
-                </div>
-
-
+            <div class="books-grid" id="books-grid">
+                <!-- Books will be dynamically loaded here -->
             </div>
         </div>
     </section>
@@ -161,21 +116,79 @@
             }
         });
 
-        // Book Filters
+        // Load Books
         document.addEventListener('DOMContentLoaded', function() {
+            const booksGrid = document.getElementById('books-grid');
+
+            // Function to create book card HTML
+            function createBookCard(book) {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                bookCard.setAttribute('data-category', book.category.join(' '));
+
+                const creatorText = getCreatorText(book);
+                const metaText = book.status === 'coming-soon'
+                    ? `${creatorText} • ${book.ageRange} • ${book.expectedRelease || 'Coming Soon'}`
+                    : `${creatorText} • ${book.ageRange}`;
+
+                // Adjust image path for books listing page (remove one ../)
+                const imagePath = book.coverImage.replace('../../', '../');
+
+                let bookInfoHTML = `
+                    <img src="${imagePath}" alt="${book.title}" class="book-cover">
+                    <div class="book-info">
+                        <h3>${book.title}</h3>
+                        <div class="book-meta">${metaText}</div>
+                        <p>${book.description}</p>
+                `;
+
+                // Add reviews if available
+                if (book.reviews && book.reviews.length > 0) {
+                    bookInfoHTML += '<div class="book-reviews">';
+                    book.reviews.forEach(review => {
+                        bookInfoHTML += `
+                            <a href="${review.url}" target="_blank" class="review-link">
+                                <span class="review-icon"><i class="bi bi-star-fill"></i></span>
+                                Read the ${review.source}
+                            </a>
+                        `;
+                    });
+                    bookInfoHTML += '</div>';
+                }
+
+                // Add button based on status
+                if (book.status === 'available') {
+                    bookInfoHTML += `<a href="${book.slug}" class="btn">Purchase</a>`;
+                } else {
+                    bookInfoHTML += '<span class="btn">Coming Soon</span>';
+                }
+
+                bookInfoHTML += '</div>';
+                bookCard.innerHTML = bookInfoHTML;
+
+                return bookCard;
+            }
+
+            // Load all books
+            booksData.forEach(book => {
+                const bookCard = createBookCard(book);
+                booksGrid.appendChild(bookCard);
+            });
+
+            // Book Filters
             const filterBtns = document.querySelectorAll('.filter-btn');
             const bookCards = document.querySelectorAll('.book-card');
-            
+
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     // Remove active class from all buttons
                     filterBtns.forEach(b => b.classList.remove('active'));
                     // Add active class to clicked button
                     this.classList.add('active');
-                    
+
                     // Get selected category
                     const category = this.getAttribute('data-category');
-                    
+
                     // Filter books
                     bookCards.forEach(card => {
                         if (category === 'all') {

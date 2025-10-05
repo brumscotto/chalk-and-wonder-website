@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nge and the Magical Drums | Chalk & Wonder Press</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="../../assets/favicons/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/books-data.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="../../" class="logo-container">
+                <img src="../../assets/images/publisher_logo_white_background.jpeg" alt="Chalk & Wonder Press Logo" class="logo">
+                <span class="wordmark">Chalk & Wonder Press</span>
+            </a>
+            <button class="mobile-menu-btn"><i class="bi bi-list"></i></button>
+            <ul class="nav-links">
+                <li><a href="../../">Home</a></li>
+                <li><a href="../">Books</a></li>
+                <li><a href="../../authors/">Authors & Illustrators</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../contact/">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Book Detail Content -->
+    <section class="book-detail">
+        <div class="container">
+            <button class="back-btn" onclick="goBack()">
+                <i class="bi bi-arrow-left"></i> Back
+            </button>
+
+            <div class="book-detail-content" id="book-content">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Chalk & Wonder Press</h4>
+                    <p>Publishing magical stories for curious young minds.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../">Home</a></li>
+                        <li><a href="../">Books</a></li>
+                        <li><a href="../../authors/">Authors & Illustrators</a></li>
+                        <li><a href="../../about/">About</a></li>
+                        <li><a href="../../contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>email@chalkandwonderpress.com</li>
+                        <li>215-601-4022</li>
+                        <li>Philadelphia, PA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Chalk & Wonder Press. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Back button functionality
+        function goBack() {
+            if (document.referrer && document.referrer.includes(window.location.host)) {
+                window.history.back();
+            } else {
+                window.location.href = '../';
+            }
+        }
+
+        // Load book details
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookSlug = 'nge-and-the-magical-drums';
+            const book = getBookBySlug(bookSlug);
+
+            if (!book) {
+                document.getElementById('book-content').innerHTML = '<p>Book not found.</p>';
+                return;
+            }
+
+            // Update page title
+            document.title = `${book.title} | Chalk & Wonder Press`;
+
+            const bookContent = document.getElementById('book-content');
+            const creatorText = getCreatorTextWithLinks(book);
+
+            let contentHTML = `
+                <div class="book-detail-image">
+                    <img src="${book.coverImage}" alt="${book.title}">
+                </div>
+                <div class="book-detail-info">
+                    <h1>${book.title}</h1>
+                    <div class="book-detail-meta">
+                        ${creatorText}${book.ageRange ? ' • ' + book.ageRange : ''}${book.releaseYear ? ' • ' + book.releaseYear : ''}
+                    </div>
+                    <div class="book-detail-description">
+                        <p>${book.description}</p>
+                    </div>
+            `;
+
+            // Add reviews if available
+            if (book.reviews && book.reviews.length > 0) {
+                contentHTML += '<div class="book-detail-reviews">';
+                book.reviews.forEach(review => {
+                    contentHTML += `
+                        <a href="${review.url}" target="_blank" class="review-link">
+                            <span class="review-icon"><i class="bi bi-star-fill"></i></span>
+                            Read the ${review.source}
+                        </a>
+                    `;
+                });
+                contentHTML += '</div>';
+            }
+
+            // Add purchase section
+            if (book.retailers) {
+                contentHTML += `
+                    <div class="book-detail-purchase">
+                        <h3>Purchase This Book</h3>
+                        <div class="retailer-links">
+                            ${book.retailers.amazon ? `<a href="${book.retailers.amazon}" target="_blank" class="retailer-btn"><i class="bi bi-cart-fill"></i> Amazon</a>` : ''}
+                            ${book.retailers.barnesNoble ? `<a href="${book.retailers.barnesNoble}" target="_blank" class="retailer-btn"><i class="bi bi-cart-fill"></i> Barnes & Noble</a>` : ''}
+                            ${book.retailers.bookshop ? `<a href="${book.retailers.bookshop}" target="_blank" class="retailer-btn"><i class="bi bi-cart-fill"></i> Bookshop.org</a>` : ''}
+                            ${book.retailers.strand ? `<a href="${book.retailers.strand}" target="_blank" class="retailer-btn"><i class="bi bi-cart-fill"></i> Strand Books</a>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            contentHTML += '</div>';
+            bookContent.innerHTML = contentHTML;
+        });
+    </script>
+</body>
+</html>
