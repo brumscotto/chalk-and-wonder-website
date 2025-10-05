@@ -3,42 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
-    <style>
-        .purchase-links { position: relative; display: inline-block; margin-top: 1em; }
-        .retailer-menu { display: none; position: absolute; background: white; list-style: none; padding: 0.5em 0; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); min-width: 200px; z-index: 100; }
-        .retailer-menu.show { display: block; }
-        .retailer-menu li { padding: 0; }
-        .retailer-menu a { display: block; padding: 0.5em 1em; color: inherit; text-decoration: none; }
-        .retailer-menu a:hover { background: #f5f5f5; }
-    </style>
+    <title>Books | Chalk & Wonder Press</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="../assets/favicons/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-    <div class="book-info">
-        <h2>Fabemol</h2>
-        <div class="purchase-links">
-            <button onclick="togglePurchaseLinks()" class="btn">Purchase</button>
-            <ul id="retailer-links" class="retailer-menu">
-                <li><a href="https://www.amazon.com/Fabemol-Hears-Heart-Listening-Empathy/dp/B0FM9L29NZ/ref=sr_1_3?crid=VFVAJ60DCQNF&dib=eyJ2IjoiMSJ9.phf1waRThDF__dzNFUI9ltPsm4wz0O3UIG6mn2dVXC8.yL5J2x9ZTC89Ilelmo69WVj908HxjPeMtafDrIItw4g&dib_tag=se&keywords=fabemol&qid=1759664566&sprefix=fabemol%2Caps%2C99&sr=8-3" target="_blank">Amazon</a></li>
-                <li><a href="https://www.barnesandnoble.com/w/fabemol-hears-the-heart-mary-ann-domanska/1148042595" target="_blank">Barnes & Noble</a></li>
-                <li><a href="https://bookshop.org/p/books/fabemol-hears-the-heart-a-story-about-listening-and-empathy/6616788c7fc475c5?ean=9798992504057&next=t" target="_blank">Bookshop.org</a></li>
-                <li><a href="https://www.strandbooks.com/fabemol-hears-the-heart-a-story-about-listening-and-empathy-9798992504057.html" target="_blank">Strand Books</a></li>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="../" class="logo-container">
+                <img src="../assets/images/publisher_logo_white_background.jpeg" alt="Chalk & Wonder Press Logo" class="logo">
+                <span class="wordmark">Chalk & Wonder Press</span>
+            </a>
+            <button class="mobile-menu-btn"><i class="bi bi-list"></i></button>
+            <ul class="nav-links">
+                <li><a href="../">Home</a></li>
+                <li><a href="./">Books</a></li>
+                <li><a href="../authors/">Authors & Illustrators</a></li>
+                <li><a href="../about/">About</a></li>
+                <li><a href="../contact/">Contact</a></li>
             </ul>
         </div>
-    </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Books</h1>
+            <p>Discover our collection of beautifully crafted books for both children and adults, designed to inspire imagination and insight.</p>
+        </div>
+    </section>
+
+    <!-- Books Content -->
+    <section class="books-content">
+        <div class="container">
+            <div class="book-filters">
+                <button class="filter-btn active" data-category="all">All Books</button>
+                <button class="filter-btn" data-category="picture">Picture Books</button>
+                <button class="filter-btn" data-category="middle-grade">Middle Grade</button>
+                <button class="filter-btn" data-category="new">New Releases</button>
+                <button class="filter-btn" data-category="coming-soon">Coming Soon</button>
+            </div>
+
+            <div class="books-grid">
+                <!-- Book 1 -->
+                <div class="book-card" data-category="picture new">
+                    <img src="../assets/images/emic_tinkerer_cover.png" alt="Emic Rizzle, Tinkerer" class="book-cover">
+                    <div class="book-info">
+                        <h3>Emic Rizzle, Tinkerer</h3>
+                        <div class="book-meta">By Mary Ann Domanska • Ages 8-12</div>
+                        <p>Twelve-year-old Emic Rizzle doesn't just dream—she builds. When her family moves from Chicago to Flat Rock, North Carolina, she faces the challenge of starting over. Then she discovers a long-lost journal filled with sketches and secrets once belonging to Nikola Tesla, entrusted to her by her late grandfather. Now, strange men in dark suits are watching, and Emic must uncover the truth before it's too late. Armed with curiosity, creativity, and a pocketknife, Emic embarks on a thrilling adventure that could change everything—including where she truly belongs.</p>
+                        <div class="book-reviews">
+                            <a href="https://www.kirkusreviews.com/book-reviews/mary-ann-domanska/emic-rizzle-tinkerer/" target="_blank" class="review-link"><span class="review-icon"><i class="bi bi-star-fill"></i></span> Read the Kirkus Review</a>
+                        </div>
+                        <!-- <a href="book1/" class="btn">Read More</a> -->
+                    </div>
+                </div>
+
+                <!-- Book 2 -->
+                <div class="book-card" data-category="picture">
+                    <img src="../assets/images/nge_magic_drum_cover.jpg" alt="Nge and the Magical Drums" class="book-cover">
+                    <div class="book-info">
+                        <h3>Nge and the Magical Drums</h3>
+                        <div class="book-meta">By Mary Ann Domanska • Ages 6-10</div>
+                        <p>Join Nge, a young orphan with a gift for drumming, as his village faces a devastating drought and he discovers his rhythm can summon life-saving rain. With help from Tembo the wise elephant, Asani the courageous lion, and playful monkeys Kali and Kofi, Nge learns that harmony and resilience can create extraordinary miracles. This enchanting story celebrates the magic of friendship and the boundless potential within us all.</p>
+                        <!-- <a href="book2/" class="btn">Read More</a> -->
+                    </div>
+                </div>
+
+                <!-- Book 5 (upcoming) -->
+                <div class="book-card" data-category="picture new">
+                    <img src="../assets/images/Fabemol-Portada_216x279-PRINT.png" alt="Fabemol Hears The Heart" class="book-cover">
+                    <div class="book-info">
+                        <h3>Fabemol Hears The Heart</h3>
+                        <div class="book-meta">Illustrated by Gabriela Guadalajara • Ages 4-8 • Coming Soon</div>
+                        <p>In a world of swirling colors and musical trees, Fabemol is a quiet soul who doesn't speak much—but he hears more than most. When Tutu tumbles, Lali's wings droop, and Gliglucito hides behind silence, Fabemol doesn't try to fix their feelings. Instead, he listens. Through textured collage illustrations and whimsical characters, this gentle story explores the quiet magic of presence, emotional connection, and the healing power of truly being heard.</p>                    
+                    </div>
+                </div>
+
+                <!-- Book 3 (upcoming) -->
+                <div class="book-card" data-category="middle-grade coming-soon">
+                    <img src="../assets/images/emic_random_acts_cover.png" alt="Emic Rizzle Commits Random Acts of Art" class="book-cover">
+                    <div class="book-info">
+                        <h3>Emic Rizzle Commits Random Acts of Art</h3>
+                        <div class="book-meta">By Mary Ann Domanska • Ages 8-12 • Expected Summer 2025</div>
+                        <p>When Emic Rizzle discovers an old painting at an estate sale, she never expects it to change her life—or her entire town. With help from her friends Dublin and Dede, and her "super camera" invention, Emic uncovers a hidden signature revealing the painting as a lost Jackson Pollock masterpiece. As fame and chaos ensue, Emic and her friends must find a way to save their wildfire-ravaged community. A mystery-filled adventure about finding value in unexpected places.</p>
+                        <span class="btn">Coming Soon</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Chalk & Wonder Press</h4>
+                    <p>Publishing magical stories for curious young minds.</p>
+                    <!-- Footer social icons temporarily removed
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                    -->
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../">Home</a></li>
+                        <li><a href="./">Books</a></li>
+                        <li><a href="../authors/">Authors & Illustrators</a></li>
+                        <li><a href="../about/">About</a></li>
+                        <li><a href="../contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>email@chalkandwonderpress.com</li>
+                        <li>215-601-4022</li>
+                        <li>Philadelphia, PA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Chalk & Wonder Press. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        function togglePurchaseLinks() {
-            const menu = document.getElementById('retailer-links');
-            menu.classList.toggle('show');
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Book Filters
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const bookCards = document.querySelectorAll('.book-card');
             
-            // Close menu when clicking outside
-            document.addEventListener('click', function closeMenu(e) {
-                if (!e.target.closest('.purchase-links')) {
-                    menu.classList.remove('show');
-                    document.removeEventListener('click', closeMenu);
-                }
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get selected category
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter books
+                    bookCards.forEach(card => {
+                        if (category === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const cardCategories = card.getAttribute('data-category').split(' ');
+                            if (cardCategories.includes(category)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
             });
-        }
+        });
     </script>
 </body>
 </html>
