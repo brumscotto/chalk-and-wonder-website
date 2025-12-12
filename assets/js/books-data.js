@@ -53,12 +53,12 @@ const booksData = [
             strand: "https://www.strandbooks.com/nge-and-the-magical-drums-bringing-rain-to-the-village-9798992504002.html"
         }
     },
-    {
+        {
         id: "fabemol-hears-heart",
         title: "Fabemol Hears The Heart",
         slug: "fabemol-hears-the-heart",
-        author: null,
-        authorSlug: null,
+        author: "Mary Ann Domanska",
+        authorSlug: "mary-ann-domanska",
         illustrator: "Gabriela Guadalajara",
         illustratorSlug: "gabriela-guadalajara",
         ageRange: "Ages 4-8",
@@ -69,10 +69,10 @@ const booksData = [
         description: "In a world of swirling colors and musical trees, Fabemol is a quiet soul who doesn't speak much—but he hears more than most. When Tutu tumbles, Lali's wings droop, and Gliglucito hides behind silence, Fabemol doesn't try to fix their feelings. Instead, he listens. Through textured collage illustrations and whimsical characters, this gentle story explores the quiet magic of presence, emotional connection, and the healing power of truly being heard.",
         reviews: [],
         retailers: {
-            amazon: "https://www.amazon.com/Fabemol-Hears-Heart-Listening-Empathy/dp/B0FM9L29NZ/ref=sr_1_1?crid=2YF9D1A9RAR8T&dib=eyJ2IjoiMSJ9.phf1waRThDF__dzNFUI9ltPsm4wz0O3UIG6mn2dVXC8.6_Pc5Jl5LSfIMBj14PJKNUQy4sppnaEv7iYqhir__WM&dib_tag=se&keywords=fabemol&qid=1759671612&sprefix=fabemol%2Caps%2C114&sr=8-1",
+            amazon: "https://www.amazon.com/Fabemol-Hears-Heart-Listening-Empathy/dp/B0FM9L29NZ/ref=sr_1_1? crid=2YF9D1A9RAR8T&dib=eyJ2IjoiMSJ9.phf1waRThDF__dzNFUI9ltPsm4wz0O3UIG6mn2dVXC8. 6_Pc5Jl5LSfIMBj14PJKNUQy4sppnaEv7iYqhir__WM&dib_tag=se&keywords=fabemol&qid=1759671612&sprefix=fabemol%2Caps%2C114&sr=8-1",
             barnesNoble: "https://www.barnesandnoble.com/w/fabemol-hears-the-heart-mary-ann-domanska/1148042595?ean=9798992504071",
-            bookshop: "https://bookshop.org/p/books/fabemol-hears-the-heart-a-story-about-listening-and-empathy/66167c8c7fc475c5?ean=9798992504057&next=t",
-            strand: "https://www.strandbooks.com/fabemol-hears-the-heart-a-story-about-listening-and-empathy-9798992504057.html"
+            bookshop: "https://bookshop.org/p/books/fabemol-hears-the-heart-a-story-about-listening-and-empathy/66167c8c7fc475c5? ean=9798992504057&next=t",
+            strand:  "https://www.strandbooks.com/fabemol-hears-the-heart-a-story-about-listening-and-empathy-9798992504057.html"
         }
     },
     {
