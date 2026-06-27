@@ -127,15 +127,20 @@
                 bookCard.setAttribute('data-category', book.category.join(' '));
 
                 const creatorText = getCreatorText(book);
-                const metaText = book.status === 'coming-soon'
-                    ? `${creatorText} • ${book.ageRange} • ${book.expectedRelease || 'Coming Soon'}`
-                    : `${creatorText} • ${book.ageRange}`;
+                const metaParts = [creatorText, book.ageRange];
+                if (book.status === 'coming-soon') {
+                    metaParts.push(book.expectedRelease || 'Coming Soon');
+                }
+                const metaText = metaParts.filter(Boolean).join(' • ');
 
-                // Adjust image path for books listing page (remove one ../)
-                const imagePath = book.coverImage.replace('../../', '../');
+                // Use the cover image when available, otherwise a placeholder.
+                // (Adjust image path for books listing page by removing one ../)
+                const coverHTML = book.coverImage
+                    ? `<img src="${book.coverImage.replace('../../', '../')}" alt="${book.title}" class="book-cover">`
+                    : `<div class="book-cover book-cover-placeholder"><span class="placeholder-title">${book.title}</span><span class="placeholder-label">Cover coming soon</span></div>`;
 
                 let bookInfoHTML = `
-                    <img src="${imagePath}" alt="${book.title}" class="book-cover">
+                    ${coverHTML}
                     <div class="book-info">
                         <h3>${book.title}</h3>
                         <div class="book-meta">${metaText}</div>

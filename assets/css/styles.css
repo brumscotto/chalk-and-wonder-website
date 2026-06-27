@@ -28,6 +28,17 @@ body {
     line-height: 1.6;
 }
 
+/* Default link color — keeps inline links on-brand instead of browser blue.
+   Component links (nav, buttons, chips, footer, etc.) set their own colors and override this. */
+a {
+    color: var(--navy);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--teal);
+}
+
 /* Layout Components */
 .container {
     width: 100%;
@@ -285,6 +296,32 @@ header {
     height: 380px;
     object-fit: cover;
     border-bottom: 3px solid var(--gold);
+}
+
+/* Placeholder shown for books whose cover art is not yet available */
+.book-cover-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+    padding: 30px;
+    background-color: var(--light-teal);
+    color: var(--navy);
+}
+
+.book-cover-placeholder .placeholder-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.book-cover-placeholder .placeholder-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--teal);
 }
 
 .book-info {

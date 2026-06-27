@@ -97,6 +97,54 @@ const booksData = [
             bookshop: "https://bookshop.org/p/books/emic-rizzle-commits-random-acts-of-art/f2d6cb40dcb7e764?ean=9798992504026&next=t",
             strand: null
         }
+    },
+    {
+        id: "shire-of-the-wissahickon",
+        title: "The Shire of the Wissahickon",
+        slug: "shire-of-the-wissahickon",
+        author: "Michael Gallagher",
+        authorSlug: "michael-gallagher",
+        illustrator: "Alison Lee Chapman",
+        illustratorSlug: null,
+        illustratorUrl: "https://www.alisonleechapman.com",
+        ageRange: null,
+        releaseYear: 2026,
+        expectedRelease: "Fall 2026",
+        category: ["coming-soon"],
+        status: "coming-soon",
+        coverImage: null,
+        description: "A forthcoming children's story set in Philadelphia's Wissahickon Valley. Drawing on the area's nature and local history, it invites young readers to step away from their screens and discover the adventures waiting in the natural world around them.",
+        reviews: [],
+        retailers: {
+            amazon: null,
+            barnesNoble: null,
+            bookshop: null,
+            strand: null
+        }
+    },
+    {
+        id: "somewhere-between-sprinklers-and-sweaters",
+        title: "Somewhere Between Sprinklers and Sweaters",
+        slug: "somewhere-between-sprinklers-and-sweaters",
+        author: "Mary Ann Domanska",
+        authorSlug: "mary-ann-domanska",
+        illustrator: "Zivia Brown",
+        illustratorSlug: null,
+        illustratorUrl: "https://www.ziviabrown.com/",
+        ageRange: null,
+        releaseYear: 2026,
+        expectedRelease: "Fall 2026",
+        category: ["coming-soon"],
+        status: "coming-soon",
+        coverImage: null,
+        description: "A collection of children's poetry by Mary Ann Domanska.",
+        reviews: [],
+        retailers: {
+            amazon: null,
+            barnesNoble: null,
+            bookshop: null,
+            strand: null
+        }
     }
 ];
 
@@ -122,13 +170,18 @@ function getBooksByCategory(category) {
 }
 
 // Helper function to format author/illustrator text
+// The illustrator name links to an external site when illustratorUrl is set.
 function getCreatorText(book) {
+    const illustratorText = book.illustrator && book.illustratorUrl
+        ? `<a href="${book.illustratorUrl}" target="_blank" rel="noopener">${book.illustrator}</a>`
+        : book.illustrator;
+
     if (book.author && book.illustrator) {
-        return `By ${book.author} • Illustrated by ${book.illustrator}`;
+        return `By ${book.author} • Illustrated by ${illustratorText}`;
     } else if (book.author) {
         return `By ${book.author}`;
     } else if (book.illustrator) {
-        return `Illustrated by ${book.illustrator}`;
+        return `Illustrated by ${illustratorText}`;
     }
     return '';
 }
@@ -145,6 +198,8 @@ function getCreatorTextWithLinks(book, authorsPagePath = '../../authors/') {
 
     if (book.illustrator && book.illustratorSlug) {
         parts.push(`Illustrated by <a href="${authorsPagePath}#${book.illustratorSlug}">${book.illustrator}</a>`);
+    } else if (book.illustrator && book.illustratorUrl) {
+        parts.push(`Illustrated by <a href="${book.illustratorUrl}" target="_blank" rel="noopener">${book.illustrator}</a>`);
     } else if (book.illustrator) {
         parts.push(`Illustrated by ${book.illustrator}`);
     }
