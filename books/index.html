@@ -50,6 +50,7 @@
                 <button class="filter-btn active" data-category="all">All Books</button>
                 <button class="filter-btn" data-category="picture">Picture Books</button>
                 <button class="filter-btn" data-category="middle-grade">Middle Grade</button>
+                <button class="filter-btn" data-category="adult">Adult Fiction</button>
                 <button class="filter-btn" data-category="new">New Releases</button>
                 <button class="filter-btn" data-category="coming-soon">Coming Soon</button>
             </div>
@@ -127,7 +128,8 @@
                 bookCard.setAttribute('data-category', book.category.join(' '));
 
                 const creatorText = getCreatorText(book);
-                const metaParts = [creatorText, book.ageRange];
+                // Adult titles carry a genre instead of an age range
+                const metaParts = [creatorText, book.genre || book.ageRange];
                 if (book.status === 'coming-soon') {
                     metaParts.push(book.expectedRelease || 'Coming Soon');
                 }

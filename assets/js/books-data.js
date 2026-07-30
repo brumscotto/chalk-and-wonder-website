@@ -99,6 +99,36 @@ const booksData = [
         }
     },
     {
+        id: "i-was-a-willow",
+        title: "I Was a Willow",
+        slug: "i-was-a-willow",
+        author: "Yaga M. Staretz",
+        authorSlug: null, // Author card on the authors page has no anchor id
+        illustrator: null,
+        illustratorSlug: null,
+        ageRange: null,
+        genre: "Adult Historical Fiction",
+        releaseYear: 2025,
+        category: ["adult", "new"],
+        status: "available",
+        coverImage: "../../assets/images/i_was_a_willow_cover.jpg",
+        description: "<em>I Was a Willow</em> is a poignant and darkly humorous novel about memory, identity, and survival in a world reshaped by war. From the secluded Home of Divine Providence, sharp-tongued mask-maker Adam Czulartian looks back upon the tangled history of his family&mdash;especially his niece Nusia, whose childhood is upended by bombing, displacement, and the difficult choices demanded by survival.",
+        descriptionParagraphs: [
+            "<em>I Was a Willow</em> is a poignant and darkly humorous novel about memory, identity, and survival in a world reshaped by war.",
+            "From the secluded Home of Divine Providence, sharp-tongued mask-maker Adam Czulartian looks back upon the tangled history of his family&mdash;especially his niece Nusia, whose childhood is upended by bombing, displacement, and the difficult choices demanded by survival.",
+            "Unfolding across generations in an Eastern Europe redrawn again and again by war, the novel follows a family through bombardment, displacement, and the long aftermath&mdash;through a homeland that has carried many names, and borders that shift beneath the people living inside them.",
+            "Adam's trade proves a fitting one. As past and present intertwine, his reflections reveal the many ways people conceal, perform, and reinvent themselves in order to endure: the faces they carve for the world, and the ones they keep hidden.",
+            "Richly layered and alive with biting wit, Yaga M. Staretz's debut novel explores the stories families tell, the truths they bury, and the quiet resilience that remains after history has done its worst."
+        ],
+        reviews: [],
+        retailers: {
+            amazon: "https://www.amazon.com/I-Was-Willow-Yaga-Staretz/dp/B0FNQ3RXCH",
+            barnesNoble: "https://www.barnesandnoble.com/w/i-was-a-willow-yaga-m-staretz/1148112704?ean=9798992504040",
+            bookshop: "https://bookshop.org/p/books/i-was-a-willow-yaga-m-staretz/6526d7610a850415?ean=9798992504040",
+            strand: "https://www.strandbooks.com/i-was-a-willow-9798992504040.html"
+        }
+    },
+    {
         id: "shire-of-the-wissahickon",
         title: "The Shire of the Wissahickon",
         slug: "shire-of-the-wissahickon",
